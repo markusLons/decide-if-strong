@@ -1,11 +1,12 @@
 class Normalizer:
     @staticmethod
-    def clearing(counter=1, encoding="utf-8"):
-        text = open(f"output/output{counter}.txt", "r", encoding=encoding).read().split()
+    def clearing(input_filename="output/output",counter=1, encoding="utf-8"):
+        preposition = "без безо как внутрь вразрез вроде будто вслед изнутри мимо подле поверх позади помимо посреди прежде промеж против близ вместо вне для кроме между меж над надо обо ото перед передо пред предо среди сквозь ради через чрез про при".split()
+        text = open(f"{input_filename}{counter}.txt", "r", encoding=encoding).read().split()
         clear_text = []
         for i in text:
-            if (len(i) > 3) and ("-" not in i):
-                clear_text.append(i)
+            if (len(i) > 2) and ("-" not in i) and (i not in preposition):
+                clear_text.append(i.lower())
         with open(f"clear/clear{counter}.txt", "w+", encoding="utf-8") as out:
             out.write(" ".join(clear_text))
 
